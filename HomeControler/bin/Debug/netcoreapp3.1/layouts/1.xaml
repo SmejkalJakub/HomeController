@@ -25,6 +25,6 @@
     </hcc:SimpleLabel.Template>
     <Label
       Name="cinlnymlkqgryslr"
-      IsHitTestVisible="False">Teplota: 24.19 °C</Label>
+      IsHitTestVisible="False">Teplota: 24.38 °C</Label>
   </hcc:SimpleLabel>
 </Grid>

@@ -12,6 +12,5 @@ namespace HomeControler.Objects
         [NonSerialized] public BitmapImage lastImage;
 
         [NonSerialized] public SimpleCamera Camera;
-
     }
 }

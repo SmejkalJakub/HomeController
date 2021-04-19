@@ -11,11 +11,28 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Linq;
 using System.Windows;
+using System.IO;
 
 namespace HomeControler.ViewModels
 {
     public class DashboardViewModel : ViewModelBase
     {
+
+        private Dictionary<string, string> _BackgroundSources;
+
+        public Dictionary<string, string> BackgroundSources
+        {
+            get
+            {
+                return _BackgroundSources;
+            }
+            set
+            {
+                _BackgroundSources = value;
+                RaisePropertyChanged();
+            }
+        }
+
         private Thickness _ImagePosition;
         public Thickness ImagePosition
         {
@@ -191,6 +208,8 @@ namespace HomeControler.ViewModels
 
 
 
+        private string currentLayout;
+
         private ObservableCollection<DatabaseData> databaseData;
 
         public DashboardViewModel()
@@ -209,20 +228,30 @@ namespace HomeControler.ViewModels
             Messenger.Default.Register<ReloadFromDatabaseMessage>(this, "getLastDatabaseValue", LoadLastDatabaseData);
             Messenger.Default.Register<string>(this, "loadLayout", loadLayout);
 
+            Messenger.Default.Register<string>(this, "saveObjects", saveBackgrounds);
 
             databaseData = App.HomeControllerModelProperty.GetDatabaseData("All", "");
 
             Labels = new Dictionary<Guid, string>();
             Switches = new Dictionary<Guid, BitmapImage>();
 
-            Messenger.Default.Register<string>(this, "backgroundSelect", setBackground);
+            BackgroundSources = new Dictionary<string, string>();
 
-            if (Settings.Default.backgroundImage != "")
+
+            if(File.Exists(@"backgrounds.bin"))
             {
-                BackgroundSource = Settings.Default.backgroundImage;
+                string serializationFile = @"backgrounds.bin";
+
+                //deserialize
+                using (Stream stream = File.Open(serializationFile, FileMode.Open))
+                {
+                    var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+
+                    BackgroundSources.Clear();
+                    BackgroundSources = (Dictionary<string, string>)bformatter.Deserialize(stream);
+                    BackgroundSource = BackgroundSources["Default"];
+                }
             }
-
-
 
             _ButtonNames = new Dictionary<int, string>();
             _ButtonNames[0] = "Default";
@@ -232,7 +261,7 @@ namespace HomeControler.ViewModels
 
             _TextBoxVisibility = Visibility.Hidden;
             _TextBoxPosition = new Thickness(80, 40, 0, 0);
-
+            currentLayout = "Default";
 
         }
 
@@ -248,6 +277,19 @@ namespace HomeControler.ViewModels
                         ChangeLabelValue(new UpdateLabelMessage { subscribedLabel = subscribedLabel, value = databaseEntry.Value });
                     }
                 }
+            }
+        }
+
+
+        private void saveBackgrounds(string value)
+        {
+            string serializationFile = @"backgrounds.bin";
+
+            using (Stream stream = File.Open(serializationFile, FileMode.Create))
+            {
+                var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+
+                bformatter.Serialize(stream, BackgroundSources);
             }
         }
 
@@ -271,6 +313,9 @@ namespace HomeControler.ViewModels
             lastButtonIndex++;
             _ButtonNames[lastButtonIndex] = lastButtonIndex.ToString();
             _ButtonPositions[lastButtonIndex] = new Thickness(_ButtonPositions[lastButtonIndex - 1].Left + 85, _ButtonPositions[lastButtonIndex - 1].Top, _ButtonPositions[lastButtonIndex - 1].Right, _ButtonPositions[lastButtonIndex - 1].Bottom);
+
+            BackgroundSources[lastButtonIndex.ToString()] = "";
+
             Messenger.Default.Send(lastButtonIndex, "addNewLayoutButton");
 
         }
@@ -289,6 +334,15 @@ namespace HomeControler.ViewModels
 
         void changeLayout(string layoutName)
         {
+            currentLayout = layoutName;
+            if(BackgroundSources.ContainsKey(layoutName))
+            {
+                BackgroundSource = BackgroundSources[layoutName];
+            }
+            else
+            {
+                BackgroundSources[layoutName] = "";
+            }
             Messenger.Default.Send(layoutName, "reloadGrid");
         }
 
@@ -301,7 +355,8 @@ namespace HomeControler.ViewModels
               "Portable Network Graphic (*.png)|*.png";
             if (op.ShowDialog() == true)
             {
-                Messenger.Default.Send(op.FileName, "backgroundSelect");
+                setBackground(op.FileName);
+                BackgroundSources[currentLayout] = op.FileName;
             }
         }
 
@@ -313,16 +368,12 @@ namespace HomeControler.ViewModels
 
         private void switchClicked(string name)
         {
-
             Messenger.Default.Send(name, "sendSwitchState");
-
         }
 
         private void setBackground(string imageUri)
         {
             BackgroundSource = imageUri;
-            Settings.Default.backgroundImage = imageUri;
-            Settings.Default.Save();
         }
 
         private void ChangeLabelValue(UpdateLabelMessage message)
