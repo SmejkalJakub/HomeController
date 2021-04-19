@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Linq;
 using System.Windows;
 using System.IO;
+using System.Text.Json;
 
 namespace HomeControler.ViewModels
 {
@@ -205,6 +206,10 @@ namespace HomeControler.ViewModels
         public ICommand ChangeLayoutImageButton => new RelayCommand(changeLayoutImage);
         public ICommand AddNewLayoutCommand => new RelayCommand(addNewLayout);
         public ICommand ShowToRenameCommand => new RelayCommand<string>(showToRename);
+        public ICommand ExportAllDataCommand => new RelayCommand(exportAllData);
+        public ICommand ImportDataCommand => new RelayCommand(importData);
+
+
 
 
 
@@ -263,6 +268,87 @@ namespace HomeControler.ViewModels
             _TextBoxPosition = new Thickness(80, 40, 0, 0);
             currentLayout = "Default";
 
+        }
+
+        void exportAllData()
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            if(!Directory.Exists(path + @"\HomeControllerData"))
+            {
+                Directory.CreateDirectory(path + @"\HomeControllerData");
+            }
+
+            string sourceFile = @"labels.bin";
+            string destinationFile = path + @"\HomeControllerData\labels.bin";
+            File.Copy(sourceFile, destinationFile, true);
+
+            sourceFile = @"switches.bin";
+            destinationFile = path + @"\HomeControllerData\switches.bin";
+            File.Copy(sourceFile, destinationFile, true);
+
+            sourceFile = @"cameras.bin";
+            destinationFile = path + @"\HomeControllerData\cameras.bin";
+            File.Copy(sourceFile, destinationFile, true);
+
+            sourceFile = @"backgrounds.bin";
+            destinationFile = path + @"\HomeControllerData\backgrounds.bin";
+            File.Copy(sourceFile, destinationFile, true);
+
+            DirectoryInfo dir = new DirectoryInfo("layouts");
+
+            FileInfo[] files = dir.GetFiles();
+
+            if(!Directory.Exists(path + @"\HomeControllerData\layouts"))
+            {
+                Directory.CreateDirectory(path + @"\HomeControllerData\layouts");
+            }
+            foreach (FileInfo file in files)
+            {
+                sourceFile = @"layouts\" + file.Name;
+                destinationFile = path + @"\HomeControllerData\layouts\" + file.Name;
+                File.Copy(sourceFile, destinationFile, true);
+            }
+        }
+
+        void importData()
+        {
+            if(Settings.Default.mqttBroker == "")
+            {
+                MessageBox.Show("Please update settings before importing data");
+            }
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            string destinationFile = @"labels.bin";
+            string sourceFile = path + @"\HomeControllerData\labels.bin";
+            File.Copy(sourceFile, destinationFile, true);
+
+            destinationFile = @"switches.bin";
+            sourceFile = path + @"\HomeControllerData\switches.bin";
+            File.Copy(sourceFile, destinationFile, true);
+
+            destinationFile = @"cameras.bin";
+            sourceFile = path + @"\HomeControllerData\cameras.bin";
+            File.Copy(sourceFile, destinationFile, true);
+
+            destinationFile = @"backgrounds.bin";
+            sourceFile = path + @"\HomeControllerData\backgrounds.bin";
+            File.Copy(sourceFile, destinationFile, true);
+
+            DirectoryInfo dir = new DirectoryInfo(path + @"\HomeControllerData\layouts");
+
+            FileInfo[] files = dir.GetFiles();
+
+            if (!Directory.Exists(@"layouts"))
+            {
+                Directory.CreateDirectory(@"layouts");
+            }
+            foreach (FileInfo file in files)
+            {
+                destinationFile = @"layouts\" + file.Name;
+                sourceFile = path + @"\HomeControllerData\layouts\" + file.Name;
+                File.Copy(sourceFile, destinationFile, true);
+            }
         }
 
         void LoadLastDatabaseData(ReloadFromDatabaseMessage elements)

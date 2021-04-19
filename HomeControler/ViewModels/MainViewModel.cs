@@ -54,6 +54,23 @@ namespace HomeControler.ViewModels
         }
 
 
+        private string currentDirectory;
+        public string CurrentDirectory
+        {
+            get
+            {
+                return currentDirectory;
+            }
+            set
+            {
+                if (currentDirectory == value)
+                    return;
+                currentDirectory = value;
+                RaisePropertyChanged();
+            }
+        }
+
+
         public MainViewModel()
         {
             Messenger.Default.Register<SettingsModel>(this, ConnectToMQTT);
@@ -83,7 +100,9 @@ namespace HomeControler.ViewModels
             CurrentViewModel = _locator.Settings;
             CurrentViewModel = _locator.Dashboard;
 
-            if(Settings.Default.mqttBroker != "")
+            CurrentDirectory = Directory.GetCurrentDirectory();
+
+            if (Settings.Default.mqttBroker != "")
             {
                 Messenger.Default.Send(Settings.Default.mqttBroker, "settingsBroker");
                 ConnectToMQTT(Settings.Default.mqttBroker);
@@ -289,7 +308,15 @@ namespace HomeControler.ViewModels
                 {
                     client.Disconnect();
                 }
-                client = new MqttClient(IPAddress.Parse(settings.BrokerIpAddress));
+                try
+                {
+                    client = new MqttClient(IPAddress.Parse(settings.BrokerIpAddress));
+                }
+                catch
+                {
+                    MessageBox.Show("Wrong IP address provided");
+                    return;
+                }
             }
             connectToServer();
         }
@@ -326,6 +353,7 @@ namespace HomeControler.ViewModels
                 // subscribe to the topic "/home/temperature" with QoS 2 
                 if (subscribedStrings.Count != 0)
                 {
+                    client.Unsubscribe(subscribedStrings.ToArray());
                     client.Subscribe(subscribedStrings.ToArray(), new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
                 }
             }

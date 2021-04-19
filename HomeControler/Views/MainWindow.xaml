@@ -29,6 +29,9 @@
         <Button Content="Database Data" HorizontalAlignment="Right" Command="{Binding DatabaseCommand}" Margin="0,0,135,0" VerticalAlignment="Center"/>
         <Button Content="Database Data Chart" HorizontalAlignment="Right" Command="{Binding DatabaseChartCommand}" Margin="0,0,225,0" VerticalAlignment="Center"/>
 
+
+        <Button Content="{Binding CurrentDirectory}" HorizontalAlignment="Left" Command="{Binding DatabaseChartCommand}" Margin="10,0,0,0" VerticalAlignment="Center" Width="554"/>
+
         <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}"/>
 
     </Grid>

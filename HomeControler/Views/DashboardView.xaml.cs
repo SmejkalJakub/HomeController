@@ -55,6 +55,7 @@ namespace HomeControler.Views
 
             if (Directory.Exists(@"layouts"))
             {
+
                 DirectoryInfo dir = new DirectoryInfo(@"layouts");
 
                 foreach (var file in dir.GetFiles("*.*"))

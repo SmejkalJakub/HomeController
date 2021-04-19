@@ -19,6 +19,9 @@
                             HorizontalAlignment="Right"/>
         <Button Content="Change Home Plan" VerticalAlignment="Bottom" HorizontalAlignment="Left" Command="{Binding ChangeLayoutImageButton}" Margin="96,0,0,10" Height="39" Width="108"/>
         <Button x:Name="saveButton" Content="Save Layout" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,10" Click="saveButton_Click" Height="39" Width="74"/>
+        <Button Content="Export All Data" VerticalAlignment="Bottom" HorizontalAlignment="Left" Command="{Binding ExportAllDataCommand}" Margin="217,0,0,10" Height="39" Width="108"/>
+        <Button Content="Import Data" VerticalAlignment="Bottom" HorizontalAlignment="Left" Command="{Binding ImportDataCommand}" Margin="339,0,0,10" Height="39" Width="108"/>
+
 
         <Button Content="{Binding ButtonNames[0]}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="{Binding ButtonPositions[0]}" Command="{Binding ChangeLayoutCommand}" CommandParameter="{Binding ButtonNames[0]}"  MaxHeight="22" MaxWidth="74" Height="22" Width="74">
             <Button.InputBindings>
