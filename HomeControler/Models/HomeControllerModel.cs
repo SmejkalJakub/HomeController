@@ -1,4 +1,10 @@
-﻿using HomeControler.ViewModels;
+﻿/*
+    Model class that will get all data from MySQL database
+    
+    Author: Jakub Smejkal(xsmejk28)
+*/
+
+using HomeControler.ViewModels;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.ObjectModel;
@@ -9,7 +15,10 @@ namespace HomeControler.Models
     public class HomeControllerModel
     {
         //MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
-
+        /*
+         * Simple function that wíll return data from database based on a fillter
+         *
+        */
         public ObservableCollection<DatabaseData> GetDatabaseData(string selectedFilterType, string filter)
         {
             MySqlConnection conn = new MySqlConnection("Server=" + Settings.Default.databaseAddress + ";userid=" + Settings.Default.databaseUserName + ";password=" + Settings.Default.databaseTablePasswd + ";Database=" + Settings.Default.databaseName);

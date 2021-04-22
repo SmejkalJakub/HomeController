@@ -1,4 +1,10 @@
-﻿using HomeControler.Controls;
+﻿/*
+    Serializable class that will be created for each camera in the dashboard
+    
+    Author: Jakub Smejkal(xsmejk28)
+*/
+
+using HomeControler.Controls;
 using System;
 using System.Windows.Media.Imaging;
 

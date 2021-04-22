@@ -1,4 +1,9 @@
-﻿<UserControl x:Class="HomeControler.Controls.SimpleLabel"
+﻿<!--
+    User control that will be added to the dashboard if the label element is selected from the popup menu
+    
+    Author: Jakub Smejkal (xsmejk28)
+--> 
+    <UserControl x:Class="HomeControler.Controls.SimpleLabel"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 

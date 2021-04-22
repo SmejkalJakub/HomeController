@@ -2,18 +2,8 @@
 using HomeControler.Objects;
 using HomeControler.Others;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace HomeControler
 {
@@ -22,11 +12,9 @@ namespace HomeControler
     /// </summary>
     public partial class NodeSettings : UserControl
     {
-
         SubscribedLabel currentLabel;
         SubscribedSwitch currentSwitch;
         SubscribedCamera currentCamera;
-
 
         public NodeSettings()
         {
@@ -35,9 +23,7 @@ namespace HomeControler
             Messenger.Default.Register<SubscribedLabel>(this, "topic", GetValues);
             Messenger.Default.Register<SubscribedSwitch>(this, "topic", GetValues);
             Messenger.Default.Register<SubscribedCamera>(this, "topic", GetValues);
-
         }
-
 
         private void GetValues(object node)
         {

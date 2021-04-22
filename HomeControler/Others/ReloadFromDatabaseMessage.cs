@@ -1,4 +1,10 @@
-﻿using HomeControler.Objects;
+﻿/*
+    Custom message class that is used to retrieve data from database for each device
+    
+    Author: Jakub Smejkal(xsmejk28)
+*/
+
+using HomeControler.Objects;
 using System.Collections.Generic;
 
 namespace HomeControler.Others

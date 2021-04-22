@@ -1,4 +1,9 @@
-﻿<UserControl x:Class="HomeControler.NodeSettings"
+﻿<!--
+    User control that will be shown every time a control is double clicked so it can be customized
+    
+    Author: Jakub Smejkal (xsmejk28)
+-->
+    <UserControl x:Class="HomeControler.NodeSettings"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 

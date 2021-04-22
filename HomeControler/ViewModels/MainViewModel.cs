@@ -1,4 +1,10 @@
-﻿using GalaSoft.MvvmLight;
+﻿/*
+    ViewModel for Main View
+
+    Author: Jakub Smejkal
+*/
+
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using HomeControler.Controls;
@@ -53,24 +59,6 @@ namespace HomeControler.ViewModels
             }
         }
 
-
-        private string currentDirectory;
-        public string CurrentDirectory
-        {
-            get
-            {
-                return currentDirectory;
-            }
-            set
-            {
-                if (currentDirectory == value)
-                    return;
-                currentDirectory = value;
-                RaisePropertyChanged();
-            }
-        }
-
-
         public MainViewModel()
         {
             Messenger.Default.Register<SettingsModel>(this, ConnectToMQTT);
@@ -99,8 +87,6 @@ namespace HomeControler.ViewModels
 
             CurrentViewModel = _locator.Settings;
             CurrentViewModel = _locator.Dashboard;
-
-            CurrentDirectory = Directory.GetCurrentDirectory();
 
             if (Settings.Default.mqttBroker != "")
             {

@@ -1,4 +1,9 @@
-﻿using GalaSoft.MvvmLight;
+﻿/*
+    ViewModel for Settings View
+
+    Author: Jakub Smejkal
+*/
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using HomeControler.Others;

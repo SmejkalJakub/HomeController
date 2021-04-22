@@ -1,4 +1,10 @@
-﻿using HomeControler.Objects;
+﻿/*
+    Simple class for sending message about switch update
+
+    Author: Jakub Smejkal, xsmejk28
+*/
+
+using HomeControler.Objects;
 
 namespace HomeControler.Others
 {

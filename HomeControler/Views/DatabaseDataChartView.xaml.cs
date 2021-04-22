@@ -1,4 +1,8 @@
-﻿using System.Windows.Controls;
+﻿/*
+    Code behind for the DatabaseDataChartView
+    Just for initializing components
+*/
+using System.Windows.Controls;
 
 namespace HomeControler.Views
 {

@@ -1,28 +1,24 @@
-﻿using GalaSoft.MvvmLight.Messaging;
+﻿/*
+    Code behind for the DashboardView
+
+    Author: Jakub Smejkal (xsmejk28)
+*/
+
+using GalaSoft.MvvmLight.Messaging;
 using HomeControler.Controls;
 using HomeControler.Objects;
 using HomeControler.Others;
-using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Net;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Markup;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Xml;
-using uPLibrary.Networking.M2Mqtt;
-using uPLibrary.Networking.M2Mqtt.Messages;
 
 namespace HomeControler.Views
 {
@@ -34,7 +30,6 @@ namespace HomeControler.Views
         List<SubscribedLabel> subscribedLabels = new List<SubscribedLabel>();
         List<SubscribedSwitch> subscribedSwitches = new List<SubscribedSwitch>();
         List<SubscribedCamera> subscribedCameras = new List<SubscribedCamera>();
-
 
         private string currentGrid;
 
@@ -55,7 +50,6 @@ namespace HomeControler.Views
 
             if (Directory.Exists(@"layouts"))
             {
-
                 DirectoryInfo dir = new DirectoryInfo(@"layouts");
 
                 foreach (var file in dir.GetFiles("*.*"))
@@ -94,9 +88,7 @@ namespace HomeControler.Views
 
             BindingOperations.SetBinding(newLayoutButton, Button.CommandParameterProperty, contentBinding);
 
-
             mainCanvas.Children.Add(newLayoutButton);
-
         }
 
         private void DeleteLabel(SubscribedLabel deletedLabel)
@@ -130,8 +122,6 @@ namespace HomeControler.Views
             sb.Begin(this);
         }
 
-
-
         private void ConsumeMessage(SimpleMessage message)
         {
             switch (message.Type)
@@ -141,6 +131,7 @@ namespace HomeControler.Views
                     break;
             }
         }
+
         private void HideConfig()
         {
             Storyboard sb = new Storyboard();
@@ -194,7 +185,6 @@ namespace HomeControler.Views
 
             controlCanvas.Children.Add(simpleCamera);
             Messenger.Default.Send(subscribedCamera, "cameraAdd");
-
         }
 
         void LoadCamera(SimpleCamera simpleCamera)
@@ -264,7 +254,6 @@ namespace HomeControler.Views
 
             controlCanvas.Children.Add(simpleSwitchControl);
             Messenger.Default.Send(subscribedSwitch, "switchAdd");
-
         }
 
         private void LoadSwitch(SimpleSwitch simpleSwitch)
@@ -284,7 +273,6 @@ namespace HomeControler.Views
             switchControl.HorizontalAlignment = HorizontalAlignment.Center;
             
             controlCanvas.Children.Add(switchControl);
-
         }
 
         private void AddLabel(object sender)
@@ -324,8 +312,8 @@ namespace HomeControler.Views
 
             controlCanvas.Children.Add(labelControl);
             Messenger.Default.Send(_subscribedLabel, "labelAdd");
-
         }
+
         private void LoadLabel(SimpleLabel simpleLabel)
         {
             SimpleLabel labelControl = new SimpleLabel();
@@ -344,7 +332,6 @@ namespace HomeControler.Views
             labelControl.HorizontalAlignment = HorizontalAlignment.Center;
 
             controlCanvas.Children.Add(labelControl);
-
         }
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
@@ -397,7 +384,6 @@ namespace HomeControler.Views
             }
 
             Messenger.Default.Send("save", "saveObjects");
-
         }
 
         void reloadGrid(string gridName)

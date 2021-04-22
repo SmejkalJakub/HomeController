@@ -1,4 +1,10 @@
-﻿using GalaSoft.MvvmLight;
+﻿/*
+    ViewModel for Database Data View
+
+    Author: Jakub Smejkal
+*/
+
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.ObjectModel;

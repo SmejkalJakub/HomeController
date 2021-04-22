@@ -34,8 +34,6 @@
                 <local:NodeSettings />
             </DataTemplate>
 
-
-            <!-- MoveThumb Template -->
             <ControlTemplate x:Key="MoveThumbTemplate" TargetType="{x:Type others:MoveThumb}">
                 <Rectangle Fill="Transparent"/>
             </ControlTemplate>

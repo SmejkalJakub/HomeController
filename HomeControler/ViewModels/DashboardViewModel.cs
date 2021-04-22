@@ -1,4 +1,10 @@
-﻿using GalaSoft.MvvmLight;
+﻿/*
+    ViewModel for Dashboard View
+
+    Author: Jakub Smejkal
+*/
+
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using HomeControler.Objects;
@@ -12,7 +18,6 @@ using System.Windows.Media.Imaging;
 using System.Linq;
 using System.Windows;
 using System.IO;
-using System.Text.Json;
 
 namespace HomeControler.ViewModels
 {
@@ -208,10 +213,9 @@ namespace HomeControler.ViewModels
         public ICommand ShowToRenameCommand => new RelayCommand<string>(showToRename);
         public ICommand ExportAllDataCommand => new RelayCommand(exportAllData);
         public ICommand ImportDataCommand => new RelayCommand(importData);
-
-
-
-
+        public ICommand AddLabelCommand => new RelayCommand(SendAddLabelMessage);
+        public ICommand AddSwitchCommand => new RelayCommand(SendAddSwitchMessage);
+        public ICommand AddCameraCommand => new RelayCommand(SendAddCameraMessage);
 
         private string currentLayout;
 
@@ -268,6 +272,21 @@ namespace HomeControler.ViewModels
             _TextBoxPosition = new Thickness(80, 40, 0, 0);
             currentLayout = "Default";
 
+        }
+
+        void SendAddLabelMessage()
+        {
+            Messenger.Default.Send(null as object, "addLabel");
+        }
+
+        void SendAddSwitchMessage()
+        {
+            Messenger.Default.Send(null as object, "addSwitch");
+        }
+
+        void SendAddCameraMessage()
+        {
+            Messenger.Default.Send(null as object, "addCamera");
         }
 
         void exportAllData()

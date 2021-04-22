@@ -1,4 +1,11 @@
-﻿<Window x:Class="HomeControler.Views.MainWindow"
+﻿<!--
+    Main Window
+    
+    In this window all other user controls will be shown based on a selected view by the buttons on top
+    
+    Author: Jakub Smejkal (xsmejk28)
+-->
+<Window x:Class="HomeControler.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,16 +14,6 @@
         mc:Ignorable="d"
         DataContext="{Binding Main, Source={StaticResource Locator}}"
         Title="MainWindow" Height="936" Width="1398">
-
-    <Window.ContextMenu>
-
-        <ContextMenu>
-            <MenuItem Header="Label" Click="AddLabel"/>
-            <MenuItem Header="Switch" Click="AddSwitch"/>
-            <MenuItem Header="Camera" Click="AddCamera"/>
-        </ContextMenu>
-
-    </Window.ContextMenu>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -28,9 +25,6 @@
         <Button Content="Settings" HorizontalAlignment="Right" Command="{Binding SettingsCommand}" Margin="0,0,10,0" VerticalAlignment="Center"/>
         <Button Content="Database Data" HorizontalAlignment="Right" Command="{Binding DatabaseCommand}" Margin="0,0,135,0" VerticalAlignment="Center"/>
         <Button Content="Database Data Chart" HorizontalAlignment="Right" Command="{Binding DatabaseChartCommand}" Margin="0,0,225,0" VerticalAlignment="Center"/>
-
-
-        <Button Content="{Binding CurrentDirectory}" HorizontalAlignment="Left" Command="{Binding DatabaseChartCommand}" Margin="10,0,0,0" VerticalAlignment="Center" Width="554"/>
 
         <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}"/>
 

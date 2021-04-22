@@ -1,4 +1,9 @@
-﻿using System.Windows.Controls;
+﻿/*
+    Code behind for the DatabaseDataView
+    Just for initializing components
+*/
+
+using System.Windows.Controls;
 
 namespace HomeControler.Views
 {

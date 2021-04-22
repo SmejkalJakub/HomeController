@@ -1,4 +1,8 @@
-﻿namespace HomeControler {
+﻿/*
+    Auto generated class
+*/
+
+namespace HomeControler {
     
     
     // This class allows you to handle specific events on the settings class:

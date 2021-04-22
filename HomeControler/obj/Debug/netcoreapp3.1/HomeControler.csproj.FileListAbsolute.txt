@@ -97,7 +97,6 @@ C:\Users\Kubaa\OneDrive\Vysoka\HomeControler\HomeControler\obj\Debug\netcoreapp3
 C:\Users\Kubaa\OneDrive\Vysoka\HomeControler\HomeControler\obj\Debug\netcoreapp3.1\HomeControler.dll
 C:\Users\Kubaa\OneDrive\Vysoka\HomeControler\HomeControler\obj\Debug\netcoreapp3.1\HomeControler.pdb
 C:\Users\Kubaa\OneDrive\Vysoka\HomeControler\HomeControler\obj\Debug\netcoreapp3.1\HomeControler.genruntimeconfig.cache
-C:\Users\Kubaa\OneDrive\Vysoka\HomeControler\HomeControler\obj\Debug\netcoreapp3.1\HomeControler.csprojAssemblyReference.cache
 C:\Users\Kubaa\OneDrive\Vysoka\HomeControler\HomeControler\obj\Debug\netcoreapp3.1\Controls\SimpleCamera.g.cs
 C:\Users\Kubaa\OneDrive\Vysoka\HomeControler\HomeControler\obj\Debug\netcoreapp3.1\Controls\SimpleLabel.g.cs
 C:\Users\Kubaa\OneDrive\Vysoka\HomeControler\HomeControler\obj\Debug\netcoreapp3.1\Controls\SimpleSwitch.g.cs

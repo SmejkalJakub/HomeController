@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+    Parent class from whitch all the Subscribed* classes will inherit ID, Name and Topic
+    
+    Author: Jakub Smejkal(xsmejk28)
+*/
+
+using System;
 
 namespace HomeControler.Objects
 {

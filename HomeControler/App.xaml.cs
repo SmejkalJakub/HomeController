@@ -1,10 +1,8 @@
-﻿using HomeControler.Models;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿/*
+    Auto generated class
+*/
+
+using HomeControler.Models;
 using System.Windows;
 
 namespace HomeControler
@@ -14,6 +12,9 @@ namespace HomeControler
     /// </summary>
     public partial class App : Application
     {
+        /// <summary>
+        /// Added property to access the database model
+        /// </summary>
         private static HomeControllerModel _homeControllerModel = new HomeControllerModel();
         public static HomeControllerModel HomeControllerModelProperty
         {
@@ -23,6 +24,9 @@ namespace HomeControler
             }
         }
 
+        /// <summary>
+        /// Added property to access the settings model
+        /// </summary>
         private static SettingsModel _settingsModel = new SettingsModel();
         public static SettingsModel SettingsModelProperty
         {

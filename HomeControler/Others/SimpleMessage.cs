@@ -1,6 +1,7 @@
 ﻿/*
-* Jednoduchá třída pro zasílání zpráv zkrzte Messenger díky které je možno komunikovat mezi ViewModely
-* Autor: Jakub Smejkal, xsmejk28
+    Simple class for sending messages with Messenger that will allow ViewModels to communicate
+
+    Author: Jakub Smejkal, xsmejk28
 */
 
 namespace HomeControler.Others
@@ -12,7 +13,7 @@ namespace HomeControler.Others
         }
 
         /// <summary>
-        /// Enum type který rozlišuje druhy zpráv
+        /// Enum to specify the type of Message
         /// </summary>
         public enum MessageType
         {

@@ -1,4 +1,11 @@
-﻿using GalaSoft.MvvmLight;
+﻿/*
+    ViewModel for Database Data Chart View
+
+    Author: Jakub Smejkal
+*/
+
+
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using LiveCharts;
 using LiveCharts.Configurations;
