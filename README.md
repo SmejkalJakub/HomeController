@@ -6,7 +6,7 @@ It is just a prototype, the final application would be done in either MAUI frame
 The WPF framework was used for simplicity.
 
 
-For testing puposes you can use settings (Local network access needed):
+For testing puposes you can use settings (VPN access needed):
 
 - 192.168.1.100
 - 192.168.1.100
