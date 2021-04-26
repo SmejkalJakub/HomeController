@@ -19,7 +19,7 @@ namespace HomeControler.ViewModels
 {
     public class DateModel
     {
-        public System.DateTime DateTime { get; set; }
+        public DateTime DateTime { get; set; }
         public double Value { get; set; }
     }
 
@@ -27,6 +27,9 @@ namespace HomeControler.ViewModels
     {
         public ICommand GenerateGraphCommand => new RelayCommand(generateGraph);
 
+        /// <summary>
+        /// All the topics loaded from the database
+        /// </summary>
         private ObservableCollection<string> _topics;
 
         public ObservableCollection<string> Topics
@@ -35,6 +38,9 @@ namespace HomeControler.ViewModels
             set { _topics = value; }
         }
 
+        /// <summary>
+        /// Topic that was selected with the dropdown
+        /// </summary>
         private string _selectedTopic;
 
         public string SelectedTopic
@@ -96,10 +102,12 @@ namespace HomeControler.ViewModels
                 }
             };
 
-            Formatter = value => new System.DateTime((long)(value * TimeSpan.FromHours(1).Ticks)).ToString("dd/MM/yyyy HH:mm");
+            Formatter = value => new DateTime((long)(value * TimeSpan.FromHours(1).Ticks)).ToString("dd/MM/yyyy HH:mm");
         }
 
-
+        /// <summary>
+        /// Generate graph for the selected topic
+        /// </summary>
         private void generateGraph()
         {
             ObservableCollection<DatabaseData> databaseData;
@@ -131,7 +139,7 @@ namespace HomeControler.ViewModels
             };
             RaisePropertyChanged("Data");
 
-            Formatter = value => new System.DateTime((long)(value * TimeSpan.FromHours(1).Ticks)).ToString("dd/MM/yyyy HH:mm");
+            Formatter = value => new DateTime((long)(value * TimeSpan.FromHours(1).Ticks)).ToString("dd/MM/yyyy HH:mm");
         }
     }
 }

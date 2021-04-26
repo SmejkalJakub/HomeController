@@ -15,10 +15,13 @@ namespace HomeControler.ViewModels
 {
     public class SettingsViewModel : ViewModelBase
     {
+        // Commands definition
         public ICommand ConnectToServerCommand => new RelayCommand(ConnectToServer);
         public ICommand ConnectToDbCommand => new RelayCommand(ConnectToDatabase);
 
-
+        /// <summary>
+        /// State of connection to the mqtt broker
+        /// </summary>
         private string _mqttState;
         public string MQTTState
         {
@@ -33,6 +36,9 @@ namespace HomeControler.ViewModels
             }
         }
 
+        /// <summary>
+        /// State of connection to the database
+        /// </summary>
         private string _dbConnectionState;
         public string DbConnectionState
         {
@@ -47,6 +53,9 @@ namespace HomeControler.ViewModels
             }
         }
 
+        /// <summary>
+        /// Color of the state text
+        /// </summary>
         private Brush _dbTextColor;
         public Brush DbTextColor
         {
@@ -61,6 +70,9 @@ namespace HomeControler.ViewModels
             }
         }
 
+        /// <summary>
+        /// MQTT state text color
+        /// </summary>
         private Brush _textColor;
         public Brush TextColor
         {
@@ -106,12 +118,14 @@ namespace HomeControler.ViewModels
             }
 
 
-
             Messenger.Default.Register<SimpleMessage>(this, ConsumeMessage);
             Messenger.Default.Register<string>(this, "settingsBroker", getBrokerAddress);
 
         }
 
+        /// <summary>
+        /// Connect to MQTT server button pressed
+        /// </summary>
         private void ConnectToServer()
         {
             MQTTState = "Connecting...";
@@ -119,6 +133,9 @@ namespace HomeControler.ViewModels
             Messenger.Default.Send(App.SettingsModelProperty);
         }
 
+        /// <summary>
+        /// Connect to the database button pressed
+        /// </summary>
         private void ConnectToDatabase()
         {
             DbConnectionState = "Connecting...";
@@ -157,6 +174,10 @@ namespace HomeControler.ViewModels
 
         }
 
+        /// <summary>
+        /// Get broker address from settings
+        /// </summary>
+        /// <param name="mqttBroker"></param>
         private void getBrokerAddress(string mqttBroker)
         {
             App.SettingsModelProperty.BrokerIpAddress = mqttBroker;

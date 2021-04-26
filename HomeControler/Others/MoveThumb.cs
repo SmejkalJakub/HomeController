@@ -1,4 +1,10 @@
-﻿using System.Windows.Controls;
+﻿/*
+    Class to make the movement possible
+
+    Author: Jakub Smejkal(xsmejk28)
+*/
+
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
 namespace HomeControler.Others

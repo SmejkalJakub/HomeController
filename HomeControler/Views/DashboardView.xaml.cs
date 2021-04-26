@@ -64,6 +64,10 @@ namespace HomeControler.Views
             }
         }
 
+        /// <summary>
+        /// Add new layout (+) button callback that will add the new layout to the top of the dashboard screen
+        /// </summary>
+        /// <param name="index"></param>
         private void addNewLayoutButton(int index)
         {
             Button newLayoutButton = new Button();
@@ -91,6 +95,10 @@ namespace HomeControler.Views
             mainCanvas.Children.Add(newLayoutButton);
         }
 
+        /// <summary>
+        /// Function that will take care of deleting selected label control
+        /// </summary>
+        /// <param name="deletedLabel">Label that should be deleted</param>
         private void DeleteLabel(SubscribedLabel deletedLabel)
         {
             SubscribedLabel foundedLabel = subscribedLabels.Find(x => x.Label == deletedLabel.Label);
@@ -102,6 +110,11 @@ namespace HomeControler.Views
             HideConfig();
         }
 
+        /// <summary>
+        /// Callback when some control element is double clicked that will show the settings for selected control
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void object_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             Storyboard sb = new Storyboard();
@@ -132,6 +145,9 @@ namespace HomeControler.Views
             }
         }
 
+        /// <summary>
+        /// Simple function that will take care of hiding the node settings view
+        /// </summary>
         private void HideConfig()
         {
             Storyboard sb = new Storyboard();
@@ -148,6 +164,10 @@ namespace HomeControler.Views
             sb.Begin(this);
         }
 
+        /// <summary>
+        /// This function will take care of adding the new camera element
+        /// </summary>
+        /// <param name="sender"></param>
         private void AddCamera(object sender)
         {
             SimpleCamera simpleCamera = new SimpleCamera();
@@ -186,7 +206,11 @@ namespace HomeControler.Views
             controlCanvas.Children.Add(simpleCamera);
             Messenger.Default.Send(subscribedCamera, "cameraAdd");
         }
-
+        
+        /// <summary>
+        /// This function will load camera object when the app is opened with already configured layout 
+        /// </summary>
+        /// <param name="simpleCamera">Camera element that should be loaded</param>
         void LoadCamera(SimpleCamera simpleCamera)
         {
             SimpleCamera cameraControl = new SimpleCamera();
@@ -207,6 +231,10 @@ namespace HomeControler.Views
             controlCanvas.Children.Add(cameraControl);
         }
 
+        /// <summary>
+        /// This function will take care of adding the new switch element
+        /// </summary>
+        /// <param name="sender"></param>
         private void AddSwitch(object sender)
         {
             SimpleSwitch simpleSwitchControl = new SimpleSwitch();
@@ -256,6 +284,10 @@ namespace HomeControler.Views
             Messenger.Default.Send(subscribedSwitch, "switchAdd");
         }
 
+        /// <summary>
+        /// This function will load switch object when the app is opened with already configured layout 
+        /// </summary>
+        /// <param name="simpleSwitch">The switch element that should be loaded</param>
         private void LoadSwitch(SimpleSwitch simpleSwitch)
         {
             SimpleSwitch switchControl = new SimpleSwitch();
@@ -275,6 +307,10 @@ namespace HomeControler.Views
             controlCanvas.Children.Add(switchControl);
         }
 
+        /// <summary>
+        /// This function will take care of adding the new label element
+        /// </summary>
+        /// <param name="sender"></param>
         private void AddLabel(object sender)
         {
             SimpleLabel labelControl = new SimpleLabel();
@@ -314,6 +350,10 @@ namespace HomeControler.Views
             Messenger.Default.Send(_subscribedLabel, "labelAdd");
         }
 
+        /// <summary>
+        /// This function will load label object when the app is opened with already configured layout 
+        /// </summary>
+        /// <param name="simpleLabel">Label control that should be loaded</param>
         private void LoadLabel(SimpleLabel simpleLabel)
         {
             SimpleLabel labelControl = new SimpleLabel();
@@ -334,6 +374,11 @@ namespace HomeControler.Views
             controlCanvas.Children.Add(labelControl);
         }
 
+        /// <summary>
+        /// Save button callback that will save current layout
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
             StringBuilder outstr = new StringBuilder();
@@ -386,6 +431,10 @@ namespace HomeControler.Views
             Messenger.Default.Send("save", "saveObjects");
         }
 
+        /// <summary>
+        /// This function will load the whole grid from the file saved on disk
+        /// </summary>
+        /// <param name="gridName">Name of the grid that should be loaded</param>
         void reloadGrid(string gridName)
         {
             currentGrid = gridName;
@@ -403,9 +452,9 @@ namespace HomeControler.Views
 
             Grid grid = (Grid)XamlReader.Load(xmlReader);
 
-            controlCanvas.Children.Clear(); // clear the existing children
+            controlCanvas.Children.Clear();
 
-            foreach (FrameworkElement child in grid.Children) // and for each child in the WrapPanel we just loaded (wp)
+            foreach (FrameworkElement child in grid.Children)
             {
                 if(child.GetType().ToString() == "HomeControler.Controls.SimpleLabel")
                 {

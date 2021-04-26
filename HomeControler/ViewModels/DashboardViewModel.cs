@@ -24,6 +24,9 @@ namespace HomeControler.ViewModels
     public class DashboardViewModel : ViewModelBase
     {
 
+        /// <summary>
+        /// Dictionary that gets the backhround file by the name of layout 
+        /// </summary>
         private Dictionary<string, string> _BackgroundSources;
 
         public Dictionary<string, string> BackgroundSources
@@ -39,6 +42,9 @@ namespace HomeControler.ViewModels
             }
         }
 
+        /// <summary>
+        /// Camera image position
+        /// </summary>
         private Thickness _ImagePosition;
         public Thickness ImagePosition
         {
@@ -66,6 +72,7 @@ namespace HomeControler.ViewModels
                 RaisePropertyChanged("TextBoxVisibility");
             }
         }
+
 
         private Thickness _TextBoxPosition;
         public Thickness TextBoxPosition
@@ -110,8 +117,10 @@ namespace HomeControler.ViewModels
         }
 
 
+        /// <summary>
+        /// Dictionary that identifies the label controls
+        /// </summary>
         private Dictionary<Guid, string> _Labels;
-
         public Dictionary<Guid, string> Labels
         {
             get 
@@ -125,8 +134,10 @@ namespace HomeControler.ViewModels
             }
         }
 
+        /// <summary>
+        /// Dictionary that identifies switch controls
+        /// </summary>
         private Dictionary<Guid, BitmapImage> _Switches;
-
         public Dictionary<Guid, BitmapImage> Switches
         {
             get
@@ -140,8 +151,10 @@ namespace HomeControler.ViewModels
             }
         }
 
+        /// <summary>
+        /// Current background source
+        /// </summary>
         private string _BackgroundSource;
-
         public string BackgroundSource
         {
             get
@@ -155,8 +168,10 @@ namespace HomeControler.ViewModels
             }
         }
 
+        /// <summary>
+        /// Node setting OnIcon
+        /// </summary>
         private BitmapImage _OnIcon;
-
         public BitmapImage OnIcon
         {
             get
@@ -170,8 +185,10 @@ namespace HomeControler.ViewModels
             }
         }
 
+        /// <summary>
+        /// Node setting OffIcon
+        /// </summary>
         private BitmapImage _OffIcon;
-
         public BitmapImage OffIcon
         {
             get
@@ -185,8 +202,10 @@ namespace HomeControler.ViewModels
             }
         }
 
+        /// <summary>
+        /// Image that was last recieved for the hovered camera
+        /// </summary>
         private BitmapImage _CameraLastImage;
-
         public BitmapImage CameraLastImage
         {
             get
@@ -204,6 +223,7 @@ namespace HomeControler.ViewModels
 
         private SubscribedCamera currentCamera;
 
+        // Commands definition
         public ICommand SelectOnIconCommand => new RelayCommand(selectOnIcon);
         public ICommand SelectOffIconCommand => new RelayCommand(selectOffIcon);
         public ICommand SwitchClickedCommand => new RelayCommand<string>(switchClicked);
@@ -217,8 +237,12 @@ namespace HomeControler.ViewModels
         public ICommand AddSwitchCommand => new RelayCommand(SendAddSwitchMessage);
         public ICommand AddCameraCommand => new RelayCommand(SendAddCameraMessage);
 
+        // Current layout selected
         private string currentLayout;
 
+        /// <summary>
+        /// Data from the database that will be shown in the 
+        /// </summary>
         private ObservableCollection<DatabaseData> databaseData;
 
         public DashboardViewModel()
@@ -274,21 +298,33 @@ namespace HomeControler.ViewModels
 
         }
 
+        /// <summary>
+        /// This function will send the trigger to add the label control to the view
+        /// </summary>
         void SendAddLabelMessage()
         {
             Messenger.Default.Send(null as object, "addLabel");
         }
 
+        /// <summary>
+        /// This function will send the trigger to add the switch control to the view
+        /// </summary>
         void SendAddSwitchMessage()
         {
             Messenger.Default.Send(null as object, "addSwitch");
         }
 
+        /// <summary>
+        /// This function will send the trigger to add the camera control to the view
+        /// </summary>
         void SendAddCameraMessage()
         {
             Messenger.Default.Send(null as object, "addCamera");
         }
 
+        /// <summary>
+        /// This function will export all the layout data onto the Desktop to the HomeControllerData folder so it can be distributed
+        /// </summary>
         void exportAllData()
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
@@ -330,6 +366,9 @@ namespace HomeControler.ViewModels
             }
         }
 
+        /// <summary>
+        /// This function will take care about importing the layout data. The data should be stored on the desktop in a HomeControllerData folder
+        /// </summary>
         void importData()
         {
             if(Settings.Default.mqttBroker == "")
@@ -370,6 +409,10 @@ namespace HomeControler.ViewModels
             }
         }
 
+        /// <summary>
+        /// This function will load data from the database about all the elements so they will show the value after app reset
+        /// </summary>
+        /// <param name="elements">Elements whitch data should be loaded</param>
         void LoadLastDatabaseData(ReloadFromDatabaseMessage elements)
         {
             if(databaseData != null)
@@ -385,7 +428,10 @@ namespace HomeControler.ViewModels
             }
         }
 
-
+        /// <summary>
+        /// This function will save all the backgrounds so they can be reloaded after the app reset
+        /// </summary>
+        /// <param name="value"></param>
         private void saveBackgrounds(string value)
         {
             string serializationFile = @"backgrounds.bin";
@@ -398,6 +444,10 @@ namespace HomeControler.ViewModels
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="indexString"></param>
         private void showToRename(string indexString)
         {
             int index = Convert.ToInt32(indexString);
@@ -405,6 +455,10 @@ namespace HomeControler.ViewModels
             _TextBoxPosition = new Thickness(ButtonPositions[index].Left, ButtonPositions[index].Top + 30, ButtonPositions[index].Right, ButtonPositions[index].Bottom);
         }
 
+        /// <summary>
+        /// This function will load layout from the data folder
+        /// </summary>
+        /// <param name="name">The layout name</param>
         private void loadLayout(string name)
         {
             lastButtonIndex++;
@@ -413,6 +467,9 @@ namespace HomeControler.ViewModels
             Messenger.Default.Send(lastButtonIndex, "addNewLayoutButton");
         }
 
+        /// <summary>
+        /// This function will take care about adding the new laoyut
+        /// </summary>
         private void addNewLayout()
         {
             lastButtonIndex++;
@@ -425,6 +482,10 @@ namespace HomeControler.ViewModels
 
         }
 
+        /// <summary>
+        /// Function that will show the last recieved image next to the hovered camera element
+        /// </summary>
+        /// <param name="cameraObject"Camera element that is hovered over></param>
         void CameraMouseOver(SubscribedCamera cameraObject)
         {
             if(cameraObject.lastImage != null)
@@ -437,6 +498,10 @@ namespace HomeControler.ViewModels
             }
         }
 
+        /// <summary>
+        /// This function will change the layout to be shown on the screen
+        /// </summary>
+        /// <param name="layoutName">Name of the layout that should be shown</param>
         void changeLayout(string layoutName)
         {
             currentLayout = layoutName;
@@ -451,6 +516,9 @@ namespace HomeControler.ViewModels
             Messenger.Default.Send(layoutName, "reloadGrid");
         }
 
+        /// <summary>
+        /// This function will take care about changing the current layout background
+        /// </summary>
         void changeLayoutImage()
         {
             OpenFileDialog op = new OpenFileDialog();
@@ -465,34 +533,58 @@ namespace HomeControler.ViewModels
             }
         }
 
+        /// <summary>
+        /// When the camera hover is done hide the image
+        /// </summary>
+        /// <param name="sender"></param>
         void CameraMouseOverLeave(string sender)
         {
             currentCamera = null;
             CameraLastImage = null;
         }
 
+        /// <summary>
+        /// Send the signal that the switch was clicked
+        /// </summary>
+        /// <param name="name">Name of the clicked switch</param>
         private void switchClicked(string name)
         {
             Messenger.Default.Send(name, "sendSwitchState");
         }
 
+        /// <summary>
+        /// Set current layout background image
+        /// </summary>
+        /// <param name="imageUri">URI of the image that should be set as background</param>
         private void setBackground(string imageUri)
         {
             BackgroundSource = imageUri;
         }
 
+        /// <summary>
+        /// This function will update the message shown in the label control
+        /// </summary>
+        /// <param name="message">Message that should be showed in the label</param>
         private void ChangeLabelValue(UpdateLabelMessage message)
         {
             Labels[message.subscribedLabel.Id] = message.subscribedLabel.Prefix + message.value + message.subscribedLabel.Postfix;
             RaisePropertyChanged("Labels");
         }
 
+        /// <summary>
+        /// This function will update the switch value
+        /// </summary>
+        /// <param name="message">Message recieved that will update the switch control</param>
         private void ChangeSwithcValue(UpdateSwitchMessage message)
         {
             Switches[message.subscribedSwitch.Id] = new BitmapImage(new Uri(message.value));
             RaisePropertyChanged("Switches");
         }
 
+        /// <summary>
+        /// This function will update the camera image but only if some camera is hovered
+        /// </summary>
+        /// <param name="cameraMessage">The message with the camera image</param>
         void ChangeCameraImage(SubscribedCamera cameraMessage)
         {
             if(currentCamera == cameraMessage)
@@ -501,6 +593,9 @@ namespace HomeControler.ViewModels
             }
         }
 
+        /// <summary>
+        /// Select the selected switch on icon
+        /// </summary>
         private void selectOnIcon()
         {
             OpenFileDialog op = new OpenFileDialog();
@@ -515,6 +610,9 @@ namespace HomeControler.ViewModels
             }
         }
 
+        /// <summary>
+        /// Select the selected swtch off icon
+        /// </summary>
         private void selectOffIcon()
         {
             OpenFileDialog op = new OpenFileDialog();
@@ -529,6 +627,10 @@ namespace HomeControler.ViewModels
             }
         }
 
+        /// <summary>
+        /// This function will load the data about icons for the switch
+        /// </summary>
+        /// <param name="subSwitch">Switch whitch icons should be set</param>
         private void SetIconValues(SubscribedSwitch subSwitch)
         {
             if(subSwitch.OnIconUri != null && subSwitch.OffIconUri != null)
@@ -538,6 +640,10 @@ namespace HomeControler.ViewModels
             }
         }
 
+        /// <summary>
+        /// This function will update the data about icons for the switch
+        /// </summary>
+        /// <param name="subSwtich">Switch whitch icons should be updated</param>
         private void UpdateSwitchIcons(SubscribedSwitch subSwtich)
         {
             if(OnIcon != null && OffIcon != null)

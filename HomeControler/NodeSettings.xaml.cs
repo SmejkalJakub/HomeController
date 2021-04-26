@@ -1,4 +1,10 @@
-﻿using GalaSoft.MvvmLight.Messaging;
+﻿/*
+    Code behind for the NodeSettings
+
+    Author: Jakub Smejkal (xsmejk28)
+*/
+
+using GalaSoft.MvvmLight.Messaging;
 using HomeControler.Objects;
 using HomeControler.Others;
 using System;
@@ -25,6 +31,10 @@ namespace HomeControler
             Messenger.Default.Register<SubscribedCamera>(this, "topic", GetValues);
         }
 
+        /// <summary>
+        /// Load the selected element data and show it in the view
+        /// </summary>
+        /// <param name="node">Element that was selected</param>
         private void GetValues(object node)
         {
             switch (node.GetType().Name)
@@ -97,6 +107,11 @@ namespace HomeControler
             }
         }
 
+        /// <summary>
+        /// Confirm button callback that will send updated data to the view model to be saved
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
             if(currentSwitch != null)
@@ -130,6 +145,11 @@ namespace HomeControler
             currentCamera = null;
         }
 
+        /// <summary>
+        /// Delete button callback to delete element
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             Messenger.Default.Send(currentLabel, "labelDelete");

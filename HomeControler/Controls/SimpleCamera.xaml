@@ -17,21 +17,6 @@
              Template="{StaticResource DesignerItemTemplate}">
 
     <Grid>
-        <!--
-        <Grid.Resources>
-            <others:BindingProxy x:Key="Proxy" Data="{Binding}" />
-        </Grid.Resources>
-
-       
-        <Grid.ContextMenu>
-            <ContextMenu>
-                <MenuItem Header="Edit" Command="{Binding Source={StaticResource Proxy}, Path=Data.AddLabelCommand}"/>
-                <MenuItem Header="Switch" Command="{Binding Source={StaticResource Proxy}, Path=Data.AddSwitchCommand}"/>
-                <MenuItem Header="Camera" Command="{Binding Source={StaticResource Proxy}, Path=Data.AddCameraCommand}"/>
-            </ContextMenu>
-        </Grid.ContextMenu>
-        -->
-        
         <Image MaxWidth="80" MaxHeight="90" Cursor="Hand" MouseEnter="camera_MouseEnter" Source="/security-camera-icon-png-22.jpg" MouseLeave="camera_MouseLeave"/>
         <Label Visibility="Hidden" Content="Select Icons" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="90" IsHitTestVisible="False" Width="80"/>
     </Grid>

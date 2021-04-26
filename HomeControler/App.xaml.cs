@@ -1,5 +1,5 @@
 ﻿/*
-    Auto generated class
+    Auto generated class updated by Jakub Smejkal(xsmejk28)
 */
 
 using HomeControler.Models;

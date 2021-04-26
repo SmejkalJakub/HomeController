@@ -30,6 +30,8 @@ namespace HomeControler.ViewModels
     public class MainViewModel : ViewModelBase
     {
         private readonly ViewModelLocator _locator = new ViewModelLocator();
+
+        // Commands definition
         public ICommand SettingsCommand => new RelayCommand(SettingsView);
         public ICommand DashboardCommand => new RelayCommand(Dashboard);
         public ICommand DatabaseCommand => new RelayCommand(Database);
@@ -100,6 +102,10 @@ namespace HomeControler.ViewModels
             }
         }
 
+        /// <summary>
+        /// Camera control mouse hover
+        /// </summary>
+        /// <param name="name">Name of the camera control hovered</param>
         void CameraMouseOver(string name)
         {
             SubscribedCamera foundedCamera = subscribedCameras.Find(x => x.UniqueName == (name.Remove(name.Length - 6)));
@@ -107,6 +113,10 @@ namespace HomeControler.ViewModels
             Messenger.Default.Send(foundedCamera, "cameraMouseOver");
         }
 
+        /// <summary>
+        /// Send clicked switch state over MQTT
+        /// </summary>
+        /// <param name="name">Switch control clicked</param>
         private void SendSwitchState(string name)
         {
             SubscribedSwitch subscribedSwitch = subscribedSwitches.Find(x => x.UniqueName == name);
@@ -121,6 +131,10 @@ namespace HomeControler.ViewModels
             }
         }
 
+        /// <summary>
+        /// Change switch icon based on the switch state
+        /// </summary>
+        /// <param name="name">Name of the switch control that should be changed</param>
         private void ChangeIconSwitch(string name)
         {
             SubscribedSwitch subscribedSwitch = subscribedSwitches.Find(x => x.UniqueName == name);
@@ -135,6 +149,10 @@ namespace HomeControler.ViewModels
             }
         }
 
+        /// <summary>
+        /// Load switch and add all needed bindings
+        /// </summary>
+        /// <param name="switchData">All needed data for the switch to load</param>
         private void LoadSwitch(Tuple<SimpleSwitch, string> switchData)
         {
             SimpleSwitch subSwitch = switchData.Item1;
@@ -176,6 +194,10 @@ namespace HomeControler.ViewModels
 
         }
 
+        /// <summary>
+        /// Load label and add all needed bindings
+        /// </summary>
+        /// <param name="labelData">All the data needed for the label to load</param>
         private void LoadLabel(Tuple<SimpleLabel, string> labelData)
         {
             SimpleLabel label = labelData.Item1;
@@ -190,6 +212,10 @@ namespace HomeControler.ViewModels
             Messenger.Default.Send(new UpdateLabelMessage { subscribedLabel = subscribedLabel, value = "null" }, "ChangeLabelValue");
         }
 
+        /// <summary>
+        /// Load camera
+        /// </summary>
+        /// <param name="cameraData">All the data needed for the camera to load</param>
         private void LoadCamera(Tuple<SimpleCamera, string> cameraData)
         {
             SimpleCamera camera = cameraData.Item1;
@@ -205,7 +231,10 @@ namespace HomeControler.ViewModels
             cameraImage.Name = subscribedCamera.UniqueName + "_image";
         }
 
-
+        /// <summary>
+        /// Subscribe to all the topics for all the controls
+        /// </summary>
+        /// <param name="value"></param>
         void SubscribeToTheStrings(string value)
         {
             foreach(SubscribedLabel label in subscribedLabels)
@@ -242,6 +271,10 @@ namespace HomeControler.ViewModels
 
         }
 
+        /// <summary>
+        /// Send trigger to roll out the node settings for the selected control
+        /// </summary>
+        /// <param name="sender"></param>
         private void ShowConfig(object sender)
         {
             switch (sender.GetType().Name)
@@ -260,27 +293,42 @@ namespace HomeControler.ViewModels
             }
         }
 
+        /// <summary>
+        /// Switch to the settings view
+        /// </summary>
         private void SettingsView()
         {
             CurrentViewModel = _locator.Settings;
         }
 
+        /// <summary>
+        /// Switch to the dashboard view
+        /// </summary>
         private void Dashboard()
         {
             CurrentViewModel = _locator.Dashboard;
         }
 
+        /// <summary>
+        /// Switch to the database data view
+        /// </summary>
         private void Database()
         {
             CurrentViewModel = _locator.DatabaseData;
         }
-
+        /// <summary>
+        /// Switch to the database chart view
+        /// </summary>
         private void DatabaseChart()
         {
             CurrentViewModel = _locator.DatabaseChartData;
         }
 
 
+        /// <summary>
+        /// Connect to the mqtt broker through settings
+        /// </summary>
+        /// <param name="settings">Settings model where the mqtt broker address is stored</param>
         private void ConnectToMQTT(SettingsModel settings)
         {
             Debug.WriteLine("Connecting " + settings.BrokerIpAddress);
@@ -307,6 +355,10 @@ namespace HomeControler.ViewModels
             connectToServer();
         }
 
+        /// <summary>
+        /// Connect to the mqtt broker with string
+        /// </summary>
+        /// <param name="mqttBroker">MQTT broker address</param>
         private void ConnectToMQTT(string mqttBroker)
         {
             Debug.WriteLine("Connecting " + mqttBroker);
@@ -326,6 +378,9 @@ namespace HomeControler.ViewModels
 
         }
 
+        /// <summary>
+        /// Try to connect to the MQTT broker
+        /// </summary>
         void connectToServer()
         {
             try
@@ -352,6 +407,10 @@ namespace HomeControler.ViewModels
             Messenger.Default.Send(new SimpleMessage { Type = SimpleMessage.MessageType.ConnectedToMQTT });
         }
 
+        /// <summary>
+        /// Save all the controls
+        /// </summary>
+        /// <param name="value"></param>
         private void saveObjects(string value)
         {
             string serializationFile = @"labels.bin";
@@ -382,6 +441,9 @@ namespace HomeControler.ViewModels
             }
         }
 
+        /// <summary>
+        /// Load all the controls
+        /// </summary>
         private void loadObjects()
         {
             string serializationFile = @"labels.bin";
@@ -418,6 +480,10 @@ namespace HomeControler.ViewModels
             }
         }
 
+        /// <summary>
+        /// Trigger reloading the data from database for every control
+        /// </summary>
+        /// <param name="sender"></param>
         private void ReloadDevicesData(string sender)
         {
             ReloadFromDatabaseMessage message = new ReloadFromDatabaseMessage
@@ -430,6 +496,10 @@ namespace HomeControler.ViewModels
             Messenger.Default.Send(message, "getLastDatabaseValue");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="updatedObject"></param>
         void CreateOrUpdateSubscribedDevice(object updatedObject)
         {
             string topicString = "";
@@ -496,22 +566,38 @@ namespace HomeControler.ViewModels
             }
         }
 
+        /// <summary>
+        /// Add label control to the array
+        /// </summary>
+        /// <param name="label">Label that should be added</param>
         private void AddLabel(SubscribedLabel label)
         {
             subscribedLabels.Add(label);
         }
 
+        /// <summary>
+        /// Add switch control to the array
+        /// </summary>
+        /// <param name="subSwitch">Switch that should be added</param>
         private void AddSwitch(SubscribedSwitch subSwitch)
         {
             subscribedSwitches.Add(subSwitch);
         }
 
+        /// <summary>
+        /// Add camera control to the array
+        /// </summary>
+        /// <param name="subCamera">Camera that should be added</param>
         private void AddCamera(SubscribedCamera subCamera)
         {
             subscribedCameras.Add(subCamera);
         }
 
-
+        /// <summary>
+        /// Change the shown camera image
+        /// </summary>
+        /// <param name="img">Image in byte array</param>
+        /// <param name="camera">Camera whitch image should be changed</param>
         void ChangeImage(byte[] img, SubscribedCamera camera)
         {
             var image = new BitmapImage();
@@ -529,6 +615,11 @@ namespace HomeControler.ViewModels
             camera.lastImage = image;
         }
 
+        /// <summary>
+        /// Callback to when the MQTT message is recieved and should be processed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void Client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
             string ReceivedMessage = Encoding.UTF8.GetString(e.Message);

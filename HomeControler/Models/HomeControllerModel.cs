@@ -15,6 +15,8 @@ namespace HomeControler.Models
     public class HomeControllerModel
     {
         //MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+
+
         /*
          * Simple function that wíll return data from database based on a fillter
          *

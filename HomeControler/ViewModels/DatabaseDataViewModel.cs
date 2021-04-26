@@ -21,26 +21,45 @@ namespace HomeControler.ViewModels
         string room;
         DateTime message_recieved;
 
+        /// <summary>
+        /// Message ID property
+        /// </summary>
         public int MessageId
         {
             get { return messageId; }
             set { messageId = value; }
         }
+
+        /// <summary>
+        /// Message topic property
+        /// </summary>
         public string Topic
         {
             get { return topic; }
             set { topic = value; }
         }
+
+        /// <summary>
+        /// Message value property
+        /// </summary>
         public string Value
         {
             get { return message_value; }
             set { message_value = value; }
         }
+
+        /// <summary>
+        /// Device Room property
+        /// </summary>
         public string Room
         {
             get { return room; }
             set { room = value; }
         }
+
+        /// <summary>
+        /// Message date time recieved 
+        /// </summary>
         public DateTime Message_recieved
         {
             get { return message_recieved; }
@@ -53,6 +72,9 @@ namespace HomeControler.ViewModels
 
         public ICommand LoadDataCommand => new RelayCommand(LoadData);
 
+        /// <summary>
+        /// Database data that should be displayed in the table
+        /// </summary>
         private ObservableCollection<DatabaseData> _databaseData;
         public ObservableCollection<DatabaseData> DatabaseDataCollection
         {
@@ -65,6 +87,10 @@ namespace HomeControler.ViewModels
                 _databaseData = value; 
             }
         }
+
+        /// <summary>
+        /// List of filters
+        /// </summary>
         public ObservableCollection<string> Filters
         {
             get 
@@ -76,6 +102,10 @@ namespace HomeControler.ViewModels
                 _filters = value; 
             }
         }
+
+        /// <summary>
+        /// Currently selected filter
+        /// </summary>
         private string _selectedFilter;
 
         public string SelectedFilter
@@ -90,7 +120,9 @@ namespace HomeControler.ViewModels
             }
         }
 
-
+        /// <summary>
+        /// Filter box string
+        /// </summary>
         private string _filterBox;
         public string FilterBox
         {
@@ -104,7 +136,6 @@ namespace HomeControler.ViewModels
             }
         }
 
-       
         public DatabaseDataViewModel()
         {
             DatabaseDataCollection = new ObservableCollection<DatabaseData>();
@@ -119,6 +150,9 @@ namespace HomeControler.ViewModels
             SelectedFilter = Filters[0];
         }
 
+        /// <summary>
+        /// Load data from the database based on model
+        /// </summary>
         private void LoadData()
         {
             DatabaseDataCollection.Clear();
