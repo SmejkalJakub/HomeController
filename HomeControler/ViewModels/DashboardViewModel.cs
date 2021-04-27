@@ -371,9 +371,10 @@ namespace HomeControler.ViewModels
         /// </summary>
         void importData()
         {
-            if(Settings.Default.mqttBroker == "")
+            if (Settings.Default.mqttBroker == "")
             {
                 MessageBox.Show("Please update settings before importing data");
+                return;
             }
             string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
@@ -407,6 +408,10 @@ namespace HomeControler.ViewModels
                 sourceFile = path + @"\HomeControllerData\layouts\" + file.Name;
                 File.Copy(sourceFile, destinationFile, true);
             }
+
+            MessageBox.Show("Please restart the app");
+            Application.Current.Shutdown();
+
         }
 
         /// <summary>

@@ -38,10 +38,6 @@
                 <views:DatabaseDataView />
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewModels:NodeViewModel}">
-                <local:NodeSettings />
-            </DataTemplate>
-
             <ControlTemplate x:Key="MoveThumbTemplate" TargetType="{x:Type others:MoveThumb}">
                 <Rectangle Fill="Transparent"/>
             </ControlTemplate>

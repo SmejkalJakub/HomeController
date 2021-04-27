@@ -391,7 +391,6 @@ namespace HomeControler.ViewModels
                 string clientId = Guid.NewGuid().ToString();
                 client.Connect(clientId);
 
-                // subscribe to the topic "/home/temperature" with QoS 2 
                 if (subscribedStrings.Count != 0)
                 {
                     client.Unsubscribe(subscribedStrings.ToArray());
