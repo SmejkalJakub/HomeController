@@ -7,7 +7,7 @@
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="HomeControler.dll.manifest" size="18944">
+    <dependentAssembly dependencyType="install" codebase="Application Files\HomeControler_1_0_0_13\HomeControler.dll.manifest" size="18944">
       <assemblyIdentity name="HomeControler.exe" version="1.0.0.13" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
