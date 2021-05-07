@@ -280,8 +280,14 @@ namespace HomeControler.ViewModels
                 {
                     var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 
+                    Dictionary <string, string> BackgroundSourcesUpdated = new Dictionary<string, string>();
                     BackgroundSources.Clear();
-                    BackgroundSources = (Dictionary<string, string>)bformatter.Deserialize(stream);
+                    BackgroundSourcesUpdated = (Dictionary<string, string>)bformatter.Deserialize(stream);
+
+                    foreach(KeyValuePair<string, string> keyValuePair in BackgroundSourcesUpdated)
+                    {
+                        BackgroundSources.Add(keyValuePair.Key, Directory.GetCurrentDirectory() + @"\images\" + keyValuePair.Value.Split('\\')[keyValuePair.Value.Split('\\').Length - 1]);
+                    }
                     BackgroundSource = BackgroundSources["Default"];
                 }
             }
@@ -364,6 +370,21 @@ namespace HomeControler.ViewModels
                 destinationFile = path + @"\HomeControllerData\layouts\" + file.Name;
                 File.Copy(sourceFile, destinationFile, true);
             }
+
+            dir = new DirectoryInfo("images");
+
+            files = dir.GetFiles();
+
+            if (!Directory.Exists(path + @"\HomeControllerData\images"))
+            {
+                Directory.CreateDirectory(path + @"\HomeControllerData\images");
+            }
+            foreach (FileInfo file in files)
+            {
+                sourceFile = @"images\" + file.Name;
+                destinationFile = path + @"\HomeControllerData\images\" + file.Name;
+                File.Copy(sourceFile, destinationFile, true);
+            }
         }
 
         /// <summary>
@@ -406,6 +427,20 @@ namespace HomeControler.ViewModels
             {
                 destinationFile = @"layouts\" + file.Name;
                 sourceFile = path + @"\HomeControllerData\layouts\" + file.Name;
+                File.Copy(sourceFile, destinationFile, true);
+            }
+
+            dir = new DirectoryInfo(path + @"\HomeControllerData\images");
+            
+            files = dir.GetFiles();
+            if (!Directory.Exists(@"images"))
+            {
+                Directory.CreateDirectory(@"images");
+            }
+            foreach (FileInfo file in files)
+            {
+                destinationFile = @"images\" + file.Name;
+                sourceFile = path + @"\HomeControllerData\images\" + file.Name;
                 File.Copy(sourceFile, destinationFile, true);
             }
 
@@ -533,8 +568,17 @@ namespace HomeControler.ViewModels
               "Portable Network Graphic (*.png)|*.png";
             if (op.ShowDialog() == true)
             {
-                setBackground(op.FileName);
-                BackgroundSources[currentLayout] = op.FileName;
+                if(!Directory.Exists(Directory.GetCurrentDirectory() + @"\images"))
+                {
+                    Directory.CreateDirectory(Directory.GetCurrentDirectory() + @"\images");
+                }
+                if (!File.Exists(Directory.GetCurrentDirectory() + @"\images\" + op.SafeFileName))
+                {
+                    File.Copy(op.FileName, Directory.GetCurrentDirectory() + @"\images\" + op.SafeFileName);
+
+                }
+                setBackground(Directory.GetCurrentDirectory() + @"\images\" + op.SafeFileName);
+                BackgroundSources[currentLayout] = Directory.GetCurrentDirectory() + @"\images\" + op.SafeFileName;
             }
         }
 
@@ -610,6 +654,14 @@ namespace HomeControler.ViewModels
               "Portable Network Graphic (*.png)|*.png";
             if (op.ShowDialog() == true)
             {
+                if (!Directory.Exists(Directory.GetCurrentDirectory() + @"\images"))
+                {
+                    Directory.CreateDirectory(Directory.GetCurrentDirectory() + @"\images");
+                }
+                if (!File.Exists(Directory.GetCurrentDirectory() + @"\images\" + op.SafeFileName))
+                {
+                    File.Copy(op.FileName, Directory.GetCurrentDirectory() + @"\images\" + op.SafeFileName);
+                }
                 BitmapImage image = new BitmapImage(new Uri(op.FileName));
                 OnIcon = image;
             }
@@ -627,6 +679,14 @@ namespace HomeControler.ViewModels
               "Portable Network Graphic (*.png)|*.png";
             if (op.ShowDialog() == true)
             {
+                if (!Directory.Exists(Directory.GetCurrentDirectory() + @"\images"))
+                {
+                    Directory.CreateDirectory(Directory.GetCurrentDirectory() + @"\images");
+                }
+                if (!File.Exists(Directory.GetCurrentDirectory() + @"\images\" + op.SafeFileName))
+                {
+                    File.Copy(op.FileName, Directory.GetCurrentDirectory() + @"\images\" + op.SafeFileName);
+                }
                 BitmapImage image = new BitmapImage(new Uri(op.FileName));
                 OffIcon = image;
             }
@@ -653,10 +713,14 @@ namespace HomeControler.ViewModels
         {
             if(OnIcon != null && OffIcon != null)
             {
-                subSwtich.OnIconUri = OnIcon.UriSource.AbsolutePath;
-                subSwtich.OffIconUri = OffIcon.UriSource.AbsolutePath;
+                subSwtich.OnIconUri = Directory.GetCurrentDirectory() + @"\images\" + (OnIcon.UriSource.AbsolutePath.Split('/')[OnIcon.UriSource.AbsolutePath.Split('/').Length - 1]);
+                subSwtich.OffIconUri = Directory.GetCurrentDirectory() + @"\images\" + (OffIcon.UriSource.AbsolutePath.Split('/')[OnIcon.UriSource.AbsolutePath.Split('/').Length - 1]);
 
                 Messenger.Default.Send(subSwtich.UniqueName, "getSwitchAndChangeValue");
+            }
+            else
+            {
+                MessageBox.Show("Please choose both icons");
             }
         }
     }

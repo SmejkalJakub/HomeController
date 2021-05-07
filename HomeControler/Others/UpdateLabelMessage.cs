@@ -1,7 +1,7 @@
 ﻿/*
     Simple class for sending message about label update
 
-    Author: Jakub Smejkal, xsmejk28
+    Author: Jakub Smejkal (xsmejk28)
 */
 
 using HomeControler.Objects;

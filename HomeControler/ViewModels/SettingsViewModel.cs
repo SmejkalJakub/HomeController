@@ -1,7 +1,7 @@
 ﻿/*
     ViewModel for Settings View
 
-    Author: Jakub Smejkal
+    Author: Jakub Smejkal (xsmejk28)
 */
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;

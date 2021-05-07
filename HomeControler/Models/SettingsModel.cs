@@ -1,7 +1,7 @@
 ﻿/*
     Model class that will store all the settings data
     
-    Author: Jakub Smejkal(xsmejk28)
+    Author: Jakub Smejkal (xsmejk28)
 */
 
 namespace HomeControler.Models

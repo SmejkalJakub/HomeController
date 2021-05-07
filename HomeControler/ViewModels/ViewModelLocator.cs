@@ -1,7 +1,7 @@
 ﻿/*
     ViewModel locator that takes care of calling the views just once
 
-    Author: Jakub Smejkal
+    Author: Jakub Smejkal (xsmejk28)
 */
 namespace HomeControler.ViewModels
 {

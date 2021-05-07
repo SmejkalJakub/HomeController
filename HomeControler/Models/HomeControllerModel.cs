@@ -1,7 +1,7 @@
 ﻿/*
     Model class that will get all data from MySQL database
     
-    Author: Jakub Smejkal(xsmejk28)
+    Author: Jakub Smejkal (xsmejk28)
 */
 
 using HomeControler.ViewModels;

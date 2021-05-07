@@ -1,7 +1,7 @@
 ﻿/*
     Class to make the movement possible
 
-    Author: Jakub Smejkal(xsmejk28)
+    Author: Jakub Smejkal (xsmejk28)
 */
 
 using System.Windows.Controls;

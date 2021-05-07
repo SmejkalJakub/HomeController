@@ -120,7 +120,7 @@ namespace HomeControler.Views
             Storyboard sb = new Storyboard();
             ThicknessAnimation thicknessAnimation = new ThicknessAnimation();
 
-            thicknessAnimation.SetValue(Storyboard.TargetNameProperty, "NodeSettings");
+            thicknessAnimation.SetValue(Storyboard.TargetProperty, NodeSettings);
             Storyboard.SetTargetProperty(thicknessAnimation, new PropertyPath(MarginProperty));
 
             thicknessAnimation.From = new Thickness(0, 0, -210, 0);
@@ -153,7 +153,7 @@ namespace HomeControler.Views
             Storyboard sb = new Storyboard();
             ThicknessAnimation thicknessAnimation = new ThicknessAnimation();
 
-            thicknessAnimation.SetValue(Storyboard.TargetNameProperty, "NodeSettings");
+            thicknessAnimation.SetValue(Storyboard.TargetProperty, NodeSettings);
             Storyboard.SetTargetProperty(thicknessAnimation, new PropertyPath(MarginProperty));
 
             thicknessAnimation.From = new Thickness(0, 0, 0, 0);

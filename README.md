@@ -24,11 +24,44 @@ To install the app onto your Windows, o to the Installation folder and run the `
 After a brief installation, the app should start or you can find it as HomeController with windows search.
 If you have a VPN access you should start it and then copy the HomeControllerData folder to the Desktop and then after setting up the Broker you can import the layouts into the dashboard.
 
+## Database for this project
+To make this prototype work with a database you should use MySQL database.
+
+First you need to create the database:
+
+``` sql
+
+CREATE DATABASE databaseName;
+
+```
+
+After creating the database you need to create user or grant access to the database to another user:
+
+``` sql
+
+CREATE USER 'databaseUser' IDENTIFIED BY 'databaseUserPassword';
+
+GRANT ALL PRIVILEGES ON databaseName.* TO 'databaseUser';
+
+FLUSH PRIVILEGES;
+```
+
+Finally you should create the table in the created database:
+
+``` sql
+
+CREATE TABLE messages(messageId INT NOT NULL AUTO_INCREMENT, topic VARCHAR(500) NOT NULL, value VARCHAR(500), room VARCHAR(255), message_recieved TIMESTAMP , PRIMARY KEY (messageId) );
+
+```
+
+After this setup you can start using the application with the database. You will have to fill the database information in the Settings tab. You can also test the connection there, so you know that you have everything setup correctly.
 
 ## Known bugs
 
-- If you want to import the data from desktop folder you will need to set the MQTT broker first and then after import restart the application. After that all will be imported just fine.
+- Application may take a while to turn on (getting last data from database).
+
+- If you want to import the data from desktop folder you will need to set the MQTT broker first and then after import restart the application. After that, all will be imported just fine.
 
 - Data from the database might take a while to load.
 
-- All the layouts are named with numbers and cant be renamed (Default layout is set as "Default").
+- All the layouts are named with numbers and can't be renamed (Default layout is set as "Default").

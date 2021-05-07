@@ -33,7 +33,7 @@
         IsHitTestVisible="False"
         Focusable="False" />
       <Image
-        Source="file:///C:/Users/Kubaa/Desktop/lightbulbEmpty.png"
+        Source="file:///C:/Users/Kubaa/OneDrive/Vysoka/HomeControler/HomeControler/bin/Debug/netcoreapp3.1/images/lightbulbEmpty.png"
         MaxWidth="80"
         MaxHeight="90"
         Cursor="Hand">
@@ -89,7 +89,7 @@
         IsHitTestVisible="False"
         Focusable="False" />
       <Image
-        Source="file:///C:/Users/Kubaa/Desktop/lightbulbFull.png"
+        Source="file:///C:/Users/Kubaa/OneDrive/Vysoka/HomeControler/HomeControler/bin/Debug/netcoreapp3.1/images/lightbulbFull.png"
         MaxWidth="80"
         MaxHeight="90"
         Cursor="Hand">
@@ -179,7 +179,7 @@
     </hcc:SimpleLabel.Template>
     <Label
       Name="pghnrxmwonseqtdj"
-      IsHitTestVisible="False">Teplota: 24.00 °C</Label>
+      IsHitTestVisible="False">Teplota: 23.88 °C</Label>
   </hcc:SimpleLabel>
   <hcc:SimpleLabel
     Margin="380.3956297763908,519.7246095375245,0,0"
@@ -233,7 +233,7 @@
     </hcc:SimpleLabel.Template>
     <Label
       Name="qyjjmfjagfvbhkhm"
-      IsHitTestVisible="False">CO2: 1545 ppm</Label>
+      IsHitTestVisible="False">CO2: 667 ppm</Label>
   </hcc:SimpleLabel>
   <hcc:SimpleSwitch
     Name="fujehxxjkxbaolsg"
@@ -268,7 +268,7 @@
         IsHitTestVisible="False"
         Focusable="False" />
       <Image
-        Source="file:///C:/Users/Kubaa/Desktop/walkingOn.png"
+        Source="file:///C:/Users/Kubaa/OneDrive/Vysoka/HomeControler/HomeControler/bin/Debug/netcoreapp3.1/images/walkingOff.png"
         MaxWidth="80"
         MaxHeight="90"
         Cursor="Hand">
@@ -324,7 +324,7 @@
         IsHitTestVisible="False"
         Focusable="False" />
       <Image
-        Source="file:///C:/Users/Kubaa/Desktop/walkingOff.png"
+        Source="file:///C:/Users/Kubaa/OneDrive/Vysoka/HomeControler/HomeControler/bin/Debug/netcoreapp3.1/images/walkingOff.png"
         MaxWidth="80"
         MaxHeight="90"
         Cursor="Hand">
@@ -372,7 +372,7 @@
     </hcc:SimpleLabel.Template>
     <Label
       Name="jwkdxwmvlyeqieft"
-      IsHitTestVisible="False">Teplota: 24.25 °C</Label>
+      IsHitTestVisible="False">Teplota: 24.00 °C</Label>
   </hcc:SimpleLabel>
   <hcc:SimpleSwitch
     Name="whinqmtwplgsmljd"
@@ -407,7 +407,7 @@
         IsHitTestVisible="False"
         Focusable="False" />
       <Image
-        Source="file:///C:/Users/Kubaa/Desktop/walkingOff.png"
+        Source="file:///C:/Users/Kubaa/OneDrive/Vysoka/HomeControler/HomeControler/bin/Debug/netcoreapp3.1/images/walkingOn.png"
         MaxWidth="80"
         MaxHeight="90"
         Cursor="Hand">
@@ -455,7 +455,7 @@
     </hcc:SimpleLabel.Template>
     <Label
       Name="wonogyxltxnhuvao"
-      IsHitTestVisible="False">Teplota: 15.38 °C</Label>
+      IsHitTestVisible="False">Teplota: 23.94 °C</Label>
   </hcc:SimpleLabel>
   <hcc:SimpleLabel
     Margin="-202.83980342466248,721.1301951219369,0,0"
@@ -482,7 +482,7 @@
     </hcc:SimpleLabel.Template>
     <Label
       Name="vkfnprkfgoqjoang"
-      IsHitTestVisible="False">Světlo: 2816.0 lux</Label>
+      IsHitTestVisible="False">Světlo: 6410.2 lux</Label>
   </hcc:SimpleLabel>
   <hcc:SimpleLabel
     Margin="-443.56258502210017,716.370802094024,0,0"
@@ -509,7 +509,7 @@
     </hcc:SimpleLabel.Template>
     <Label
       Name="rlcspdomfbbintqh"
-      IsHitTestVisible="False">Vlhkost: 53.7 %</Label>
+      IsHitTestVisible="False">Vlhkost: 25.3 %</Label>
   </hcc:SimpleLabel>
   <hcc:SimpleLabel
     Margin="-536.8140643887543,-704.9359331123571,0,0"
@@ -536,7 +536,7 @@
     </hcc:SimpleLabel.Template>
     <Label
       Name="lwklxblvqrwkebfa"
-      IsHitTestVisible="False">Teplota: 24.38 °C</Label>
+      IsHitTestVisible="False">Teplota: 23.81 °C</Label>
   </hcc:SimpleLabel>
   <hcc:SimpleLabel
     Margin="150.0025379095108,-174.51398981992918,0,0"

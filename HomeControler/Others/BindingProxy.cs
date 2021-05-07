@@ -1,7 +1,7 @@
 ﻿/*
     Class to make it possible to bind the ContextMenu to ViewModel
 
-    Author: Jakub Smejkal(xsmejk28)
+    Author: Jakub Smejkal (xsmejk28)
 */
 
 using System.Windows;

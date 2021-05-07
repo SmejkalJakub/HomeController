@@ -1,7 +1,7 @@
 ﻿/*
     Simple class for sending messages with Messenger that will allow ViewModels to communicate
 
-    Author: Jakub Smejkal, xsmejk28
+    Author: Jakub Smejkal (xsmejk28)
 */
 
 namespace HomeControler.Others

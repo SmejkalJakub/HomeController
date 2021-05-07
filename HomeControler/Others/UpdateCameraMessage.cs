@@ -1,7 +1,7 @@
 ﻿/*
     Simple class for sending message about camera update
 
-    Author: Jakub Smejkal, xsmejk28
+    Author: Jakub Smejkal (xsmejk28)
 */
 
 using HomeControler.Objects;

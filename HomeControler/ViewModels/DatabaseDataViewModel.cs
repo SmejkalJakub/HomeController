@@ -1,7 +1,7 @@
 ﻿/*
     ViewModel for Database Data View
 
-    Author: Jakub Smejkal
+    Author: Jakub Smejkal (xsmejk28)
 */
 
 using GalaSoft.MvvmLight;

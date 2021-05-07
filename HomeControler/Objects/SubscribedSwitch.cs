@@ -1,7 +1,7 @@
 ﻿/*
     Serializable class that will be created for each switch in the dashboard
     
-    Author: Jakub Smejkal(xsmejk28)
+    Author: Jakub Smejkal (xsmejk28)
 */
 
 using HomeControler.Controls;

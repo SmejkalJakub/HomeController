@@ -1,7 +1,7 @@
 ﻿/*
     ViewModel for Database Data Chart View
 
-    Author: Jakub Smejkal
+    Author: Jakub Smejkal (xsmejk28)
 */
 
 

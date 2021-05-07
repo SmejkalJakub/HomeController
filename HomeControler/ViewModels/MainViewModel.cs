@@ -1,7 +1,7 @@
 ﻿/*
     ViewModel for Main View
 
-    Author: Jakub Smejkal
+    Author: Jakub Smejkal (xsmejk28)
 */
 
 using GalaSoft.MvvmLight;
@@ -334,17 +334,21 @@ namespace HomeControler.ViewModels
             Debug.WriteLine("Connecting " + settings.BrokerIpAddress);
             if(client == null)
             {
-                client = new MqttClient(IPAddress.Parse(settings.BrokerIpAddress));
+                client = new MqttClient(settings.BrokerIpAddress);
+
+                //client = new MqttClient(IPAddress.Parse(settings.BrokerIpAddress));
             }
             else
             {
                 if(client.IsConnected)
                 {
+                    client.Unsubscribe(subscribedStrings.ToArray());
                     client.Disconnect();
                 }
                 try
                 {
-                    client = new MqttClient(IPAddress.Parse(settings.BrokerIpAddress));
+                    //client = new MqttClient(IPAddress.Parse(settings.BrokerIpAddress));
+                    client = new MqttClient(settings.BrokerIpAddress);
                 }
                 catch
                 {
@@ -364,15 +368,19 @@ namespace HomeControler.ViewModels
             Debug.WriteLine("Connecting " + mqttBroker);
             if (client == null)
             {
-                client = new MqttClient(IPAddress.Parse(mqttBroker));
+                //client = new MqttClient(IPAddress.Parse(mqttBroker));
+                client = new MqttClient(mqttBroker);
             }
             else
             {
                 if (client.IsConnected)
                 {
+                    client.Unsubscribe(subscribedStrings.ToArray());
                     client.Disconnect();
                 }
-                client = new MqttClient(IPAddress.Parse(mqttBroker));
+                client = new MqttClient(mqttBroker);
+
+                //client = new MqttClient(IPAddress.Parse(mqttBroker));
             }
             connectToServer();
 
@@ -391,10 +399,18 @@ namespace HomeControler.ViewModels
                 string clientId = Guid.NewGuid().ToString();
                 client.Connect(clientId);
 
+                while (true)
+                {
+                    if(client.IsConnected)
+                    {
+                        break;
+                    }
+                }
+
                 if (subscribedStrings.Count != 0)
                 {
-                    client.Unsubscribe(subscribedStrings.ToArray());
-                    client.Subscribe(subscribedStrings.ToArray(), new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+                    //client.Unsubscribe(subscribedStrings.ToArray());
+                    //client.Subscribe(subscribedStrings.ToArray(), new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
                 }
             }
             catch
@@ -465,6 +481,13 @@ namespace HomeControler.ViewModels
 
                 subscribedSwitches.Clear();
                 subscribedSwitches = (List<SubscribedSwitch>)bformatter.Deserialize(stream);
+
+                foreach(var subSwitch in subscribedSwitches)
+                {
+                    subSwitch.OnIconUri = Directory.GetCurrentDirectory() + @"\images\" + subSwitch.OnIconUri.Split('\\')[subSwitch.OnIconUri.Split('\\').Length - 1];
+                    subSwitch.OffIconUri = Directory.GetCurrentDirectory() + @"\images\" + subSwitch.OffIconUri.Split('\\')[subSwitch.OffIconUri.Split('\\').Length - 1];
+
+                }
             }
 
             serializationFile = @"cameras.bin";
