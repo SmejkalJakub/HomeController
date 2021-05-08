@@ -1,4 +1,4 @@
-# Prototype application for my BP for smart homes
+# Prototype application for my BP for smart homes (Windows PC only)
 
 This app serves as a showcase of Smart home application for my BP.
 It is just a prototype, the final application would be done in either MAUI framework or other multiplatform soulution.
@@ -17,6 +17,11 @@ For testing purposes you can use settings (VPN access needed):
 To Import data with the button on the Dashboard view just put the 'HomeControllerData' folder onto your Desktop. After the settings setup and import you should restart the application and you will get all the Dashboards with all the controls.
 
 If you use Export All Data button, all the data will be exported to the folder on your desktop 'HomeControllerData'
+
+## Building
+To build and update this project you will need the [Visual Studio 2019](https://visualstudio.microsoft.com/cs/downloads/)
+
+To just install the compiled application please visit the next part of README
 
 ## Installation
 To install the app onto your Windows, o to the Installation folder and run the ``setup.exe``.
