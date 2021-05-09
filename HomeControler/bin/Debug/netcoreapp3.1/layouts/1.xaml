@@ -1,7 +1,7 @@
 <Grid
-  Name="controlCanvas" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:hcc="clr-namespace:HomeControler.Controls;assembly=HomeControler" xmlns:hco="clr-namespace:HomeControler.Others;assembly=HomeControler">
+  Name="controlCanvas" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:hcc="clr-namespace:HomeControler.Controls;assembly=HomeControler" xmlns:hco="clr-namespace:HomeControler.Others;assembly=HomeControler" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <hcc:SimpleLabel
-    Margin="-413.95898556436646,-537.7889389628668,0,0"
+    Margin="-787.2400570186858,-730.5075108294635,0,0"
     HorizontalAlignment="Center"
     VerticalAlignment="Center">
     <hcc:SimpleLabel.Template>
@@ -25,6 +25,241 @@
     </hcc:SimpleLabel.Template>
     <Label
       Name="cinlnymlkqgryslr"
-      IsHitTestVisible="False">Teplota: 24.31 °C</Label>
+      IsHitTestVisible="False">Teplota: 26 °C</Label>
   </hcc:SimpleLabel>
+  <hcc:SimpleLabel
+    Margin="-787.0958302820035,-672.0671621775851,0,0"
+    HorizontalAlignment="Center"
+    VerticalAlignment="Center">
+    <hcc:SimpleLabel.Template>
+      <ControlTemplate
+        TargetType="Control">
+        <Grid>
+          <hco:MoveThumb
+            Cursor="SizeAll">
+            <hco:MoveThumb.Template>
+              <ControlTemplate
+                TargetType="hco:MoveThumb">
+                <Rectangle
+                  Fill="#00FFFFFF" />
+              </ControlTemplate>
+            </hco:MoveThumb.Template>
+          </hco:MoveThumb>
+          <ContentPresenter
+            Content="{TemplateBinding ContentControl.Content}" />
+        </Grid>
+      </ControlTemplate>
+    </hcc:SimpleLabel.Template>
+    <Label
+      Name="rkqlufmhuwoxltsg"
+      IsHitTestVisible="False">Vlhkost: 32 %</Label>
+  </hcc:SimpleLabel>
+  <hcc:SimpleSwitch
+    Name="fmhljwpmpghamell"
+    Margin="769.8735675577811,-683.2835626931045,0,0"
+    HorizontalAlignment="Center"
+    VerticalAlignment="Center">
+    <hcc:SimpleSwitch.Template>
+      <ControlTemplate
+        TargetType="Control">
+        <Grid>
+          <hco:MoveThumb
+            Cursor="SizeAll">
+            <hco:MoveThumb.Template>
+              <ControlTemplate
+                TargetType="hco:MoveThumb">
+                <Rectangle
+                  Fill="#00FFFFFF" />
+              </ControlTemplate>
+            </hco:MoveThumb.Template>
+          </hco:MoveThumb>
+          <ContentPresenter
+            Content="{TemplateBinding ContentControl.Content}" />
+        </Grid>
+      </ControlTemplate>
+    </hcc:SimpleSwitch.Template>
+    <Grid>
+      <CheckBox
+        Margin="5,22,0,0"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Top"
+        Visibility="Hidden"
+        IsHitTestVisible="False"
+        Focusable="False" />
+      <Image
+        Source="file:///C:/Users/Kubaa/OneDrive/Vysoka/HomeControler/HomeControler/bin/Debug/netcoreapp3.1/images/radiatorIconOff.png"
+        MaxWidth="80"
+        MaxHeight="90"
+        Cursor="Hand">
+        <Image.InputBindings>
+          <MouseBinding
+            Gesture="LeftClick"
+            MouseAction="LeftClick"
+            CommandParameter="fmhljwpmpghamell"
+            Command="{x:Null}" />
+        </Image.InputBindings>
+      </Image>
+      <Label
+        HorizontalContentAlignment="Center"
+        VerticalContentAlignment="Center"
+        Width="80"
+        Height="90"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Visibility="Visible"
+        IsHitTestVisible="False">Select Icons</Label>
+    </Grid>
+  </hcc:SimpleSwitch>
+  <hcc:SimpleCamera
+    Name="eucrwrnqrdepkpen"
+    Margin="-838.1438275480434,-197.04757916465502,0,0"
+    HorizontalAlignment="Center"
+    VerticalAlignment="Center">
+    <hcc:SimpleCamera.Template>
+      <ControlTemplate
+        TargetType="Control">
+        <Grid>
+          <hco:MoveThumb
+            Cursor="SizeAll">
+            <hco:MoveThumb.Template>
+              <ControlTemplate
+                TargetType="hco:MoveThumb">
+                <Rectangle
+                  Fill="#00FFFFFF" />
+              </ControlTemplate>
+            </hco:MoveThumb.Template>
+          </hco:MoveThumb>
+          <ContentPresenter
+            Content="{TemplateBinding ContentControl.Content}" />
+        </Grid>
+      </ControlTemplate>
+    </hcc:SimpleCamera.Template>
+    <Grid>
+      <Image
+        Source="pack://application:,,,/security-camera-icon-png-22.jpg"
+        Name="eucrwrnqrdepkpen_image"
+        MaxWidth="80"
+        MaxHeight="90"
+        Cursor="Hand" />
+      <Label
+        HorizontalContentAlignment="Center"
+        VerticalContentAlignment="Center"
+        Width="80"
+        Height="90"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Visibility="Hidden"
+        IsHitTestVisible="False">Select Icons</Label>
+    </Grid>
+  </hcc:SimpleCamera>
+  <hcc:SimpleLabel
+    Margin="627.0525638016422,-547.3315467759901,0,0"
+    HorizontalAlignment="Center"
+    VerticalAlignment="Center">
+    <hcc:SimpleLabel.Template>
+      <ControlTemplate
+        TargetType="Control">
+        <Grid>
+          <hco:MoveThumb
+            Cursor="SizeAll">
+            <hco:MoveThumb.Template>
+              <ControlTemplate
+                TargetType="hco:MoveThumb">
+                <Rectangle
+                  Fill="#00FFFFFF" />
+              </ControlTemplate>
+            </hco:MoveThumb.Template>
+          </hco:MoveThumb>
+          <ContentPresenter
+            Content="{TemplateBinding ContentControl.Content}" />
+        </Grid>
+      </ControlTemplate>
+    </hcc:SimpleLabel.Template>
+    <Label
+      Name="odnxpqhgrdomulqo"
+      IsHitTestVisible="False">Teplota termostat: 19 °C</Label>
+  </hcc:SimpleLabel>
+  <hcc:SimpleLabel
+    Margin="590.7973913355822,-488.86631343370107,0,0"
+    HorizontalAlignment="Center"
+    VerticalAlignment="Center">
+    <hcc:SimpleLabel.Template>
+      <ControlTemplate
+        TargetType="Control">
+        <Grid>
+          <hco:MoveThumb
+            Cursor="SizeAll">
+            <hco:MoveThumb.Template>
+              <ControlTemplate
+                TargetType="hco:MoveThumb">
+                <Rectangle
+                  Fill="#00FFFFFF" />
+              </ControlTemplate>
+            </hco:MoveThumb.Template>
+          </hco:MoveThumb>
+          <ContentPresenter
+            Content="{TemplateBinding ContentControl.Content}" />
+        </Grid>
+      </ControlTemplate>
+    </hcc:SimpleLabel.Template>
+    <Label
+      Name="cudblbiuvhjcttvt"
+      IsHitTestVisible="False">Hraniční teplota: 23 °C</Label>
+  </hcc:SimpleLabel>
+  <hcc:SimpleSwitch
+    Name="jjjyfpcxdvdteced"
+    Margin="-17.07144570163655,-223.07143616862413,0,0"
+    HorizontalAlignment="Center"
+    VerticalAlignment="Center">
+    <hcc:SimpleSwitch.Template>
+      <ControlTemplate
+        TargetType="Control">
+        <Grid>
+          <hco:MoveThumb
+            Cursor="SizeAll">
+            <hco:MoveThumb.Template>
+              <ControlTemplate
+                TargetType="hco:MoveThumb">
+                <Rectangle
+                  Fill="#00FFFFFF" />
+              </ControlTemplate>
+            </hco:MoveThumb.Template>
+          </hco:MoveThumb>
+          <ContentPresenter
+            Content="{TemplateBinding ContentControl.Content}" />
+        </Grid>
+      </ControlTemplate>
+    </hcc:SimpleSwitch.Template>
+    <Grid>
+      <CheckBox
+        Margin="5,22,0,0"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Top"
+        Visibility="Hidden"
+        IsHitTestVisible="False"
+        Focusable="False" />
+      <Image
+        Source="file:///C:/Users/Kubaa/OneDrive/Vysoka/HomeControler/HomeControler/bin/Debug/netcoreapp3.1/images/lightbulbEmpty.png"
+        MaxWidth="80"
+        MaxHeight="90"
+        Cursor="Hand">
+        <Image.InputBindings>
+          <MouseBinding
+            Gesture="LeftClick"
+            MouseAction="LeftClick"
+            CommandParameter="jjjyfpcxdvdteced"
+            Command="{x:Null}" />
+        </Image.InputBindings>
+      </Image>
+      <Label
+        HorizontalContentAlignment="Center"
+        VerticalContentAlignment="Center"
+        Width="80"
+        Height="90"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Visibility="Visible"
+        IsHitTestVisible="False">Select Icons</Label>
+    </Grid>
+  </hcc:SimpleSwitch>
 </Grid>

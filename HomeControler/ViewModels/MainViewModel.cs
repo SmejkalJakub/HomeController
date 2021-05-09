@@ -656,7 +656,14 @@ namespace HomeControler.ViewModels
             }
             else if (foundedSwitch != null)
             {
-                foundedSwitch.State = Convert.ToBoolean(ReceivedMessage);
+                if(ReceivedMessage == "1")
+                {
+                    foundedSwitch.State = true;
+                }
+                else
+                {
+                    foundedSwitch.State = false;
+                }
                 Application.Current.Dispatcher.Invoke(new Action(() => { ChangeIconSwitch(foundedSwitch.UniqueName); }));
             }
             else if(foundedCamera != null)
